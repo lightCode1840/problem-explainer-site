@@ -40,7 +40,7 @@ function Nav() {
           >
             <Play size={13} fill="white" color="white" />
           </div>
-          <span className="font-semibold text-[15px] tracking-tight">Problem Explainer</span>
+          <span className="font-semibold text-[15px] tracking-tight">TutorReel</span>
         </div>
 
         {/* Links */}
@@ -377,7 +377,7 @@ function Footer() {
           >
             <Play size={10} fill="white" color="white" />
           </div>
-          <span className="text-sm font-medium">Problem Explainer</span>
+          <span className="text-sm font-medium">TutorReel</span>
         </div>
 
         <div className="flex items-center gap-6 text-sm text-zinc-500">
@@ -388,7 +388,7 @@ function Footer() {
           </a>
         </div>
 
-        <p className="text-xs text-zinc-700">© 2026 Problem Explainer · MIT License</p>
+        <p className="text-xs text-zinc-700">© 2026 TutorReel · MIT License</p>
       </div>
     </footer>
   );
