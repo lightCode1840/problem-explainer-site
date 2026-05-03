@@ -297,7 +297,7 @@ function HowItWorks({ c }: { c: Ctx }) {
               {i < STEPS.length - 1 && (
                 <div
                   className="hidden md:block absolute top-9 left-[55%] right-0 h-px"
-                  style={{ background: c.isDark ? '#232326' : '#E4E4E7' }}
+                  style={{ background: c.border }}
                 />
               )}
               <div
@@ -395,12 +395,16 @@ function DownloadSection({ c }: { c: Ctx }) {
                 <p className="text-sm mb-4" style={{ color: c.textSecondary }}>克隆仓库自建运行，需 Node.js 18+</p>
                 <div
                   className="p-4 rounded-xl font-mono text-xs leading-6 border"
-                  style={{ background: c.isDark ? '#00000020' : '#f0f0f2', borderColor: c.border }}
+                  style={{
+                    background: c.isDark ? '#00000020' : '#E8E8EC',
+                    borderColor: c.border,
+                    color: c.textPrimary,
+                  }}
                 >
-                  <div><span style={{ color: c.accent }}>$ </span><span>git clone {GITHUB_URL}</span></div>
-                  <div><span style={{ color: c.accent }}>$ </span><span>cd cs-interview-prep && npm install</span></div>
-                  <div><span style={{ color: c.accent }}>$ </span><span>cp .env.example .env</span><span style={{ color: c.textSecondary }}>  # 填入 API Key</span></div>
-                  <div><span style={{ color: c.accent }}>$ </span><span>npm run dev</span></div>
+                  <div><span style={{ color: c.accent }}>$ </span><span style={{ color: c.textPrimary }}>git clone {GITHUB_URL}</span></div>
+                  <div><span style={{ color: c.accent }}>$ </span><span style={{ color: c.textPrimary }}>cd cs-interview-prep {'&&'} npm install</span></div>
+                  <div><span style={{ color: c.accent }}>$ </span><span style={{ color: c.textPrimary }}>cp .env.example .env</span><span style={{ color: c.textSecondary }}>  # 填入 API Key</span></div>
+                  <div><span style={{ color: c.accent }}>$ </span><span style={{ color: c.textPrimary }}>npm run dev</span></div>
                 </div>
               </div>
             </div>
@@ -458,7 +462,7 @@ function Footer({ c }: { c: Ctx }) {
           <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="transition-colors hover:opacity-80" style={{ color: c.textSecondary }}>GitHub</a>
         </div>
 
-        <p className="text-xs" style={{ color: c.textPrimary + '55' }}>© 2026 码帧 TutorReel · MIT License</p>
+        <p className="text-xs" style={{ color: c.textSecondary }}>© 2026 码帧 TutorReel · MIT License</p>
       </div>
     </footer>
   );
