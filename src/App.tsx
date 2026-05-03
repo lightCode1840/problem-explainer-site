@@ -50,7 +50,7 @@ export default function App() {
   const accent = isDark ? ACCENT_DARK : ACCENT_LIGHT;
   const accentGradient = isDark
     ? 'linear-gradient(135deg,#5eead4 0%,#22B8CF 40%,#06b6d4 100%)'
-    : 'linear-gradient(135deg,#22B8CF 0%,#0891B2 40%,#065E7C 100%)';
+    : 'linear-gradient(135deg,#0E7490 0%,#065E7C 50%,#043A4F 100%)';
 
   const c = { bg, cardBg, textPrimary, textSecondary, border, accent, accentGradient, isDark, toggle };
 
@@ -87,7 +87,7 @@ function Nav({ c }: { c: Ctx }) {
     <nav
       className="fixed top-0 left-0 right-0 z-50 border-b"
       style={{
-        background: `rgba(11,11,13,${c.isDark ? '0.85' : '0.75'})`,
+        background: c.isDark ? 'rgba(11,11,13,0.85)' : 'rgba(247,247,248,0.88)',
         backdropFilter: 'blur(14px)',
         borderColor: c.border,
       }}
@@ -108,7 +108,7 @@ function Nav({ c }: { c: Ctx }) {
           {['功能', '使用说明', '下载'].map(label => {
             const href = label === '功能' ? '#features' : label === '使用说明' ? '#how-it-works' : '#download';
             return (
-              <a key={label} href={href} className="hover:text-white transition-colors" style={{ color: c.textSecondary }}>
+              <a key={label} href={href} className="transition-colors hover:opacity-80" style={{ color: c.textSecondary }}>
                 {label}
               </a>
             );
@@ -452,10 +452,10 @@ function Footer({ c }: { c: Ctx }) {
           <span className="text-[11px]" style={{ color: c.textSecondary }}>码帧</span>
         </div>
 
-        <div className="flex items-center gap-6 text-sm">
-          <a href="#features" className="hover:text-white transition-colors">功能</a>
-          <a href="#download" className="hover:text-white transition-colors">下载</a>
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-white transition-colors" style={{ color: c.textSecondary }}>GitHub</a>
+        <div className="flex items-center gap-6 text-sm" style={{ color: c.textSecondary }}>
+          <a href="#features" className="transition-colors hover:opacity-80">功能</a>
+          <a href="#download" className="transition-colors hover:opacity-80">下载</a>
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="transition-colors hover:opacity-80" style={{ color: c.textSecondary }}>GitHub</a>
         </div>
 
         <p className="text-xs" style={{ color: c.textPrimary + '55' }}>© 2026 码帧 TutorReel · MIT License</p>
