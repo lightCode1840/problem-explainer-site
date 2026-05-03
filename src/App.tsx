@@ -20,8 +20,9 @@ const C = {
   text: '#EDEDEF',
   text2: '#6E6E77',
   text3: '#3F3F46',
-  accent: '#D4D4D8',    // subtle gray accent
+  accent: '#D4D4D8',
   accentBg: '#18181B',
+  cyn: '#22B8CF',
 };
 
 export default function App() {
@@ -49,27 +50,27 @@ function Nav() {
         <div className="flex items-center gap-2.5">
           <div
             className="w-7 h-7 rounded-lg flex items-center justify-center"
-            style={{ background: C.accentBg, border: `1px solid ${C.border}` }}
+            style={{ background: C.cyn }}
           >
-            <Play size={13} />
+            <Play size={13} className="text-black" />
           </div>
           <span className="font-semibold text-[15px] tracking-tight">TutorReel</span>
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm" style={{ color: C.text2 }}>
-          <a href="#features" className="hover:text-white transition-colors">功能</a>
-          <a href="#how-it-works" className="hover:text-white transition-colors">使用说明</a>
-          <a href="#download" className="hover:text-white transition-colors">下载</a>
+          <a href="#features" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>功能</a>
+          <a href="#how-it-works" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>使用说明</a>
+          <a href="#download" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>下载</a>
         </div>
 
         <div className="flex items-center gap-2">
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="p-2 transition-colors hover:text-white" style={{ color: C.text2 }} aria-label="GitHub">
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="p-2 transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2} aria-label="GitHub">
             <GithubIcon size={18} />
           </a>
           <a
             href="#download"
             className="px-4 py-1.5 text-sm rounded-lg font-medium transition-all hover:opacity-85"
-            style={{ background: C.text, color: C.bg }}
+            style={{ background: C.cyn, color: '#000000' }}
           >
             免费下载
           </a>
@@ -121,7 +122,7 @@ function Hero() {
           <a
             href="#download"
             className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] transition-all hover:opacity-85"
-            style={{ background: C.text, color: C.bg }}
+            style={{ background: C.cyn, color: '#000000' }}
           >
             <Download size={16} />
             下载桌面应用
@@ -130,8 +131,10 @@ function Hero() {
             href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] border transition-all hover:border-white/30"
+            className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] border transition-all"
             style={{ borderColor: C.border, color: C.text2 }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}
           >
             <GithubIcon size={16} />
             查看源码
@@ -167,11 +170,13 @@ function Features() {
           {FEATURES_DATA.map((f, i) => (
             <div
               key={i}
-              className="p-6 rounded-2xl border transition-all hover:border-white/20"
+              className="p-6 rounded-2xl border transition-all"
               style={{ background: C.card, borderColor: C.border }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = '#22B8CF'}
+              onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
             >
               <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: C.accentBg, border: `1px solid ${C.border}` }}>
-                <span style={{ color: C.text }}>{f.icon}</span>
+                <span style={{ color: C.cyn }}>{f.icon}</span>
               </div>
               <h3 className="font-semibold mb-2 text-[15px]" style={{ color: C.text }}>{f.title}</h3>
               <p className="text-sm leading-relaxed" style={{ color: C.text2 }}>{f.desc}</p>
@@ -208,10 +213,12 @@ function HowItWorks() {
                 <div className="hidden md:block absolute top-9 left-[55%] right-0 h-px" style={{ background: C.border }} />
               )}
               <div
-                className="p-6 rounded-2xl border transition-all hover:border-white/20 h-full"
+                className="p-6 rounded-2xl border transition-all h-full"
                 style={{ background: C.card, borderColor: C.border }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = '#22B8CF'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
               >
-                <div className="text-2xl font-bold mb-4" style={{ color: C.text2 }}>
+                <div className="text-2xl font-bold mb-4" style={{ color: C.cyn }}>
                   {step.num}
                 </div>
                 <h3 className="font-semibold mb-2 text-[15px]" style={{ color: C.text }}>{step.title}</h3>
@@ -242,19 +249,23 @@ function DownloadSection() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-left mb-8">
               {/* Desktop App */}
               <div
-                className="p-6 rounded-2xl border transition-all hover:border-white/20"
+                className="p-6 rounded-2xl border transition-all"
                 style={{ background: C.bg, borderColor: C.border }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = '#22B8CF'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
               >
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: C.accentBg, border: `1px solid ${C.border}` }}>
-                  <Monitor size={18} />
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: `${C.cyn}20`, border: `1px solid ${C.cyn}40` }}>
+                  <Monitor size={18} style={{ color: C.cyn }} />
                 </div>
                 <h3 className="font-semibold mb-1" style={{ color: C.text }}>桌面应用</h3>
                 <p className="text-sm mb-4" style={{ color: C.text2 }}>双击安装，不用配环境</p>
                 <div className="flex flex-col gap-2.5">
                   <a
                     href={`${GITHUB_URL}/releases/latest/download/TutorReel-macOS.dmg`}
-                    className="flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-sm hover:border-white/30"
+                    className="flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-sm"
                     style={{ borderColor: C.border, color: C.text2 }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}
                   >
                     <span className="flex items-center gap-2">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v16m0 0l-4-4m4 4l4-4"/><path d="M4 20h16"/></svg>
@@ -264,8 +275,10 @@ function DownloadSection() {
                   </a>
                   <a
                     href={`${GITHUB_URL}/releases/latest/download/TutorReel-Windows-x64.exe`}
-                    className="flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-sm hover:border-white/30"
+                    className="flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-sm"
                     style={{ borderColor: C.border, color: C.text2 }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}
                   >
                     <span className="flex items-center gap-2">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
@@ -278,11 +291,13 @@ function DownloadSection() {
 
               {/* Local Dev */}
               <div
-                className="p-6 rounded-2xl border transition-all hover:border-white/20"
+                className="p-6 rounded-2xl border transition-all"
                 style={{ background: C.bg, borderColor: C.border }}
+                onMouseEnter={e => e.currentTarget.style.borderColor = '#22B8CF'}
+                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
               >
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: C.accentBg, border: `1px solid ${C.border}` }}>
-                  <Terminal size={18} />
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: `${C.cyn}20`, border: `1px solid ${C.cyn}40` }}>
+                  <Terminal size={18} style={{ color: C.cyn }} />
                 </div>
                 <h3 className="font-semibold mb-1" style={{ color: C.text }}>自己跑源码</h3>
                 <p className="text-sm mb-4" style={{ color: C.text2 }}>git clone 一把梭，适合开发者</p>
@@ -304,15 +319,17 @@ function DownloadSection() {
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] transition-all hover:opacity-85"
-                style={{ background: C.text, color: C.bg }}
+                style={{ background: C.cyn, color: '#000000' }}
               >
                 <GithubIcon size={17} />
                 前往 GitHub
               </a>
               <a
                 href={`${GITHUB_URL}/archive/refs/heads/main.zip`}
-                className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] border transition-all hover:border-white/30"
+                className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] border transition-all"
                 style={{ borderColor: C.border, color: C.text2 }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}
               >
                 <Download size={17} />
                 下载源码 ZIP
@@ -334,17 +351,17 @@ function Footer() {
         <div className="flex items-center gap-2">
           <div
             className="w-6 h-6 rounded-md flex items-center justify-center"
-            style={{ background: C.accentBg, border: `1px solid ${C.border}` }}
+            style={{ background: C.cyn }}
           >
-            <Play size={10} />
+            <Play size={10} className="text-black" />
           </div>
           <span className="text-sm font-medium" style={{ color: C.text }}>TutorReel</span>
         </div>
 
         <div className="flex items-center gap-6 text-sm" style={{ color: C.text2 }}>
-          <a href="#features" className="hover:text-white transition-colors">功能</a>
-          <a href="#download" className="hover:text-white transition-colors">下载</a>
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">GitHub</a>
+          <a href="#features" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>功能</a>
+          <a href="#download" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>下载</a>
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>GitHub</a>
         </div>
 
         <p className="text-xs" style={{ color: C.text3 }}>© 2026 TutorReel · MIT License</p>
