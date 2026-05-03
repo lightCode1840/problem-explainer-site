@@ -10,9 +10,6 @@ function GithubIcon({ size = 18 }: { size?: number }) {
 
 const GITHUB_URL = 'https://github.com/lightCode1840/cs-interview-prep';
 
-// ─── Color palette ──────────────────────────────────────────────────
-// Clean monochrome with a single subtle accent
-
 const C = {
   bg: '#0B0B0D',
   card: '#141416',
@@ -20,7 +17,6 @@ const C = {
   text: '#EDEDEF',
   text2: '#6E6E77',
   text3: '#3F3F46',
-  accent: '#D4D4D8',
   accentBg: '#18181B',
   cyn: '#22B8CF',
 };
@@ -48,30 +44,22 @@ function Nav() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div
-            className="w-7 h-7 rounded-lg flex items-center justify-center"
-            style={{ background: C.cyn }}
-          >
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: C.cyn }}>
             <Play size={13} className="text-black" />
           </div>
           <span className="font-semibold text-[15px] tracking-tight">TutorReel</span>
         </div>
 
         <div className="hidden md:flex items-center gap-8 text-sm" style={{ color: C.text2 }}>
-          <a href="#features" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>功能</a>
-          <a href="#how-it-works" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>使用说明</a>
-          <a href="#download" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>下载</a>
+          {(['功能', '使用说明', '下载'] as const).map(label => {
+            const href = label === '功能' ? '#features' : label === '使用说明' ? '#how-it-works' : '#download';
+            return <NavLink key={label} href={href}>{label}</NavLink>;
+          })}
         </div>
 
         <div className="flex items-center gap-2">
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="p-2 transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2} aria-label="GitHub">
-            <GithubIcon size={18} />
-          </a>
-          <a
-            href="#download"
-            className="px-4 py-1.5 text-sm rounded-lg font-medium transition-all hover:opacity-85"
-            style={{ background: C.cyn, color: '#000000' }}
-          >
+          <NavIcon href={GITHUB_URL} label="GitHub"><GithubIcon size={18} /></NavIcon>
+          <a href="#download" className="px-4 py-1.5 text-sm rounded-lg font-medium transition-all hover:opacity-85" style={{ background: C.cyn, color: '#000000' }}>
             免费下载
           </a>
         </div>
@@ -80,62 +68,63 @@ function Nav() {
   );
 }
 
+function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <a href={href} className="transition-colors" style={{ color: C.text2 }}
+      onMouseEnter={e => e.currentTarget.style.color = C.cyn}
+      onMouseLeave={e => e.currentTarget.style.color = C.text2}>
+      {children}
+    </a>
+  );
+}
+
+function NavIcon({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="p-2 transition-colors" style={{ color: C.text2 }} aria-label={label}
+      onMouseEnter={e => e.currentTarget.style.color = C.cyn}
+      onMouseLeave={e => e.currentTarget.style.color = C.text2}>
+      {children}
+    </a>
+  );
+}
+
 // ─── Hero ───────────────────────────────────────────────────────────
 
 function Hero() {
   return (
     <section className="relative pt-40 pb-28 px-6 text-center overflow-hidden">
-      {/* Subtle grid */}
       <div className="pointer-events-none absolute inset-0 opacity-[0.025]">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)',
-            backgroundSize: '60px 60px',
-          }}
-        />
+        <div className="w-full h-full" style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)',
+          backgroundSize: '60px 60px',
+        }} />
       </div>
 
       <div className="relative max-w-4xl mx-auto">
-        {/* Badge */}
-        <div
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs mb-8"
-          style={{ border: `1px solid ${C.border}`, color: C.text2 }}
-        >
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs mb-8" style={{ border: `1px solid ${C.border}`, color: C.text2 }}>
           <span className="w-1.5 h-1.5 rounded-full" style={{ background: C.text }} />
-          本地跑 · 开源 · 免费
+          本地运行 · 开源免费
         </div>
 
         <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight mb-6">
-          <span style={{ color: C.text }}>刷题太枯燥？</span>
+          <span style={{ color: C.text }}>用 AI 把文字题</span>
           <br />
-          <span style={{ color: C.text2 }}>让它变成动画片</span>
+          <span style={{ color: C.text }}>变成</span>{' '}
+          <span style={{ color: C.cyn }}>讲解视频</span>
         </h1>
 
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: C.text2 }}>
-          把一道题贴进去，剩下的交给它。
-          <br />
-          <span className="text-sm" style={{ color: C.text3 }}>macOS / Windows 都能跑</span>
+          粘贴题目，自动生成带配音和数据可视化动画的短视频，支持直接导出 MP4
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#download"
-            className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] transition-all hover:opacity-85"
-            style={{ background: C.cyn, color: '#000000' }}
-          >
+          <a href="#download" className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] transition-all hover:opacity-85" style={{ background: C.cyn, color: '#000000' }}>
             <Download size={16} />
-            下载桌面应用
+            免费下载
           </a>
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] border transition-all"
-            style={{ borderColor: C.border, color: C.text2 }}
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] border transition-all" style={{ borderColor: C.border, color: C.text2 }}
             onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}
-          >
+            onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}>
             <GithubIcon size={16} />
             查看源码
             <ArrowRight size={14} />
@@ -149,12 +138,12 @@ function Hero() {
 // ─── Features ───────────────────────────────────────────────────────
 
 const FEATURES_DATA = [
-  { icon: <Zap size={19} />, title: '自己选模型', desc: 'DeepSeek、GPT、Qwen 随你挑。觉得某个模型讲得不对味？换一个重来就行' },
-  { icon: <Mic2 size={19} />, title: '配音不机器', desc: '字幕一行，语音一段。字幕精炼好读，语音自然像人，不用手调' },
-  { icon: <Monitor size={19} />, title: '动画跟思路走', desc: '数组、树、链表…… 讲到哪高亮到哪，指针和状态跟着步骤变' },
-  { icon: <Layers size={19} />, title: '不是只有算法题', desc: '英语语法、Java 八股文一样行。每种题型有专属模板，插件一挂就能加' },
-  { icon: <Code2 size={19} />, title: '改到满意为止', desc: 'AI 生成的东西你说了算。步骤、措辞、动画，想改哪改哪' },
-  { icon: <Terminal size={19} />, title: '不传你的数据', desc: '一切在你电脑上跑。装个 Electron 就能用，装 Node.js 也能用' },
+  { icon: <Zap size={19} />, title: '多模型接入', desc: '支持 DeepSeek、GPT、Qwen 等主流大模型，可根据需要自由切换' },
+  { icon: <Mic2 size={19} />, title: '自动配音', desc: '字幕与语音分离设计，字幕简洁可读，语音自然流畅，自动对齐画面' },
+  { icon: <Monitor size={19} />, title: '可视化动画', desc: '数组、树、链表等数据结构随讲解步骤自动推进，高亮与指针同步更新' },
+  { icon: <Layers size={19} />, title: '多题型支持', desc: '内置 LeetCode 算法题、英语语法、Java 面试题三种模板，可扩展' },
+  { icon: <Code2 size={19} />, title: '内容可编辑', desc: 'AI 生成的脚本和动画状态支持手动调整，满足精细化需求' },
+  { icon: <Terminal size={19} />, title: '本地运行', desc: '数据在本地处理，无需上传云端，支持桌面应用和开发模式' },
 ];
 
 function Features() {
@@ -162,19 +151,15 @@ function Features() {
     <section id="features" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: C.text }}>它能干什么</h2>
-          <p style={{ color: C.text2 }}>不多不少，刚好够用</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: C.text }}>核心功能</h2>
+          <p style={{ color: C.text2 }}>自动化讲解视频生成的全流程工具</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {FEATURES_DATA.map((f, i) => (
-            <div
-              key={i}
-              className="p-6 rounded-2xl border transition-all"
-              style={{ background: C.card, borderColor: C.border }}
+            <div key={i} className="p-6 rounded-2xl border transition-all" style={{ background: C.card, borderColor: C.border }}
               onMouseEnter={e => e.currentTarget.style.borderColor = '#22B8CF'}
-              onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
-            >
+              onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
               <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: C.accentBg, border: `1px solid ${C.border}` }}>
                 <span style={{ color: C.cyn }}>{f.icon}</span>
               </div>
@@ -191,10 +176,10 @@ function Features() {
 // ─── How It Works ───────────────────────────────────────────────────
 
 const STEPS = [
-  { num: '01', title: '贴题目', desc: 'Ctrl+V 把题粘进去，选个题型和模型' },
-  { num: '02', title: '它来拆', desc: '后台的大模型吭哧吭哧把题拆成一步一步的讲解' },
-  { num: '03', title: '你看一遍', desc: '动画和文案都出来了，觉得哪里不对直接改' },
-  { num: '04', title: '导出', desc: '点一下，MP4 生成完事，想批量就批量' },
+  { num: '01', title: '粘贴题目', desc: '选择题型和 AI 模型，启动解析' },
+  { num: '02', title: 'AI 拆解', desc: '自动分析题目结构，生成讲解脚本和动画方案' },
+  { num: '03', title: '预览调整', desc: '查看生成的动画与配音，按需修改细节' },
+  { num: '04', title: '导出视频', desc: '渲染为高清 MP4，支持批量导出' },
 ];
 
 function HowItWorks() {
@@ -202,8 +187,8 @@ function HowItWorks() {
     <section id="how-it-works" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: C.text }}>用起来就四步</h2>
-          <p style={{ color: C.text2 }}>比剪视频简单一百倍</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: C.text }}>四步完成制作</h2>
+          <p style={{ color: C.text2 }}>无需视频剪辑经验</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -212,15 +197,10 @@ function HowItWorks() {
               {i < STEPS.length - 1 && (
                 <div className="hidden md:block absolute top-9 left-[55%] right-0 h-px" style={{ background: C.border }} />
               )}
-              <div
-                className="p-6 rounded-2xl border transition-all h-full"
-                style={{ background: C.card, borderColor: C.border }}
+              <div className="p-6 rounded-2xl border transition-all h-full" style={{ background: C.card, borderColor: C.border }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = '#22B8CF'}
-                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
-              >
-                <div className="text-2xl font-bold mb-4" style={{ color: C.cyn }}>
-                  {step.num}
-                </div>
+                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
+                <div className="text-2xl font-bold mb-4" style={{ color: C.cyn }}>{step.num}</div>
                 <h3 className="font-semibold mb-2 text-[15px]" style={{ color: C.text }}>{step.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: C.text2 }}>{step.desc}</p>
               </div>
@@ -238,73 +218,37 @@ function DownloadSection() {
   return (
     <section id="download" className="py-24 px-6">
       <div className="max-w-4xl mx-auto">
-        <div
-          className="relative p-12 rounded-3xl border overflow-hidden text-center"
-          style={{ background: C.card, borderColor: C.border }}
-        >
+        <div className="relative p-12 rounded-3xl border overflow-hidden text-center" style={{ background: C.card, borderColor: C.border }}>
           <div className="relative">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: C.text }}>开搞</h2>
-            <p className="mb-8" style={{ color: C.text2 }}>想省事还是想折腾，都行</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: C.text }}>获取 TutorReel</h2>
+            <p className="mb-8" style={{ color: C.text2 }}>支持 macOS 和 Windows</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-left mb-8">
               {/* Desktop App */}
-              <div
-                className="p-6 rounded-2xl border transition-all"
-                style={{ background: C.bg, borderColor: C.border }}
+              <div className="p-6 rounded-2xl border transition-all" style={{ background: C.bg, borderColor: C.border }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = '#22B8CF'}
-                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
-              >
+                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: `${C.cyn}20`, border: `1px solid ${C.cyn}40` }}>
                   <Monitor size={18} style={{ color: C.cyn }} />
                 </div>
                 <h3 className="font-semibold mb-1" style={{ color: C.text }}>桌面应用</h3>
-                <p className="text-sm mb-4" style={{ color: C.text2 }}>双击安装，不用配环境</p>
+                <p className="text-sm mb-4" style={{ color: C.text2 }}>即装即用，无需配置开发环境</p>
                 <div className="flex flex-col gap-2.5">
-                  <a
-                    href={`${GITHUB_URL}/releases/latest/download/TutorReel-macOS.dmg`}
-                    className="flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-sm"
-                    style={{ borderColor: C.border, color: C.text2 }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}
-                  >
-                    <span className="flex items-center gap-2">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v16m0 0l-4-4m4 4l4-4"/><path d="M4 20h16"/></svg>
-                      macOS (Apple Silicon)
-                    </span>
-                    <span className="text-xs" style={{ color: C.text3 }}>.dmg</span>
-                  </a>
-                  <a
-                    href={`${GITHUB_URL}/releases/latest/download/TutorReel-Windows-x64.exe`}
-                    className="flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-sm"
-                    style={{ borderColor: C.border, color: C.text2 }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}
-                  >
-                    <span className="flex items-center gap-2">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-                      Windows (x64)
-                    </span>
-                    <span className="text-xs" style={{ color: C.text3 }}>.exe</span>
-                  </a>
+                  <DownloadRow href={`${GITHUB_URL}/releases/latest/download/TutorReel-macOS.dmg`} label="macOS (Apple Silicon)" ext=".dmg" />
+                  <DownloadRow href={`${GITHUB_URL}/releases/latest/download/TutorReel-Windows-x64.exe`} label="Windows (x64)" ext=".exe" />
                 </div>
               </div>
 
               {/* Local Dev */}
-              <div
-                className="p-6 rounded-2xl border transition-all"
-                style={{ background: C.bg, borderColor: C.border }}
+              <div className="p-6 rounded-2xl border transition-all" style={{ background: C.bg, borderColor: C.border }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = '#22B8CF'}
-                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
-              >
+                onMouseLeave={e => e.currentTarget.style.borderColor = C.border}>
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: `${C.cyn}20`, border: `1px solid ${C.cyn}40` }}>
                   <Terminal size={18} style={{ color: C.cyn }} />
                 </div>
-                <h3 className="font-semibold mb-1" style={{ color: C.text }}>自己跑源码</h3>
-                <p className="text-sm mb-4" style={{ color: C.text2 }}>git clone 一把梭，适合开发者</p>
-                <div
-                  className="p-4 rounded-xl font-mono text-xs leading-6 border"
-                  style={{ background: C.bg, borderColor: C.border }}
-                >
+                <h3 className="font-semibold mb-1" style={{ color: C.text }}>源码运行</h3>
+                <p className="text-sm mb-4" style={{ color: C.text2 }}>克隆仓库自行构建，需 Node.js 18+</p>
+                <div className="p-4 rounded-xl font-mono text-xs leading-6 border" style={{ background: C.bg, borderColor: C.border }}>
                   <div><span style={{ color: C.text2 }}>$ </span><span style={{ color: C.text }}>git clone {GITHUB_URL}</span></div>
                   <div><span style={{ color: C.text2 }}>$ </span><span style={{ color: C.text }}>cd cs-interview-prep && npm install</span></div>
                   <div><span style={{ color: C.text2 }}>$ </span><span style={{ color: C.text }}>cp .env.example .env</span><span style={{ color: C.text3 }}>  # 填入 API Key</span></div>
@@ -314,23 +258,13 @@ function DownloadSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={GITHUB_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] transition-all hover:opacity-85"
-                style={{ background: C.cyn, color: '#000000' }}
-              >
+              <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] transition-all hover:opacity-85" style={{ background: C.cyn, color: '#000000' }}>
                 <GithubIcon size={17} />
                 前往 GitHub
               </a>
-              <a
-                href={`${GITHUB_URL}/archive/refs/heads/main.zip`}
-                className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] border transition-all"
-                style={{ borderColor: C.border, color: C.text2 }}
+              <a href={`${GITHUB_URL}/archive/refs/heads/main.zip`} className="flex items-center gap-2 px-7 py-3 rounded-xl font-semibold text-[15px] border transition-all" style={{ borderColor: C.border, color: C.text2 }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}
-              >
+                onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}>
                 <Download size={17} />
                 下载源码 ZIP
               </a>
@@ -342,6 +276,20 @@ function DownloadSection() {
   );
 }
 
+function DownloadRow({ href, label, ext }: { href: string; label: string; ext: string }) {
+  return (
+    <a href={href} className="flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-sm" style={{ borderColor: C.border, color: C.text2 }}
+      onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
+      onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}>
+      <span className="flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v16m0 0l-4-4m4 4l4-4"/><path d="M4 20h16"/></svg>
+        {label}
+      </span>
+      <span className="text-xs" style={{ color: C.text3 }}>{ext}</span>
+    </a>
+  );
+}
+
 // ─── Footer ─────────────────────────────────────────────────────────
 
 function Footer() {
@@ -349,21 +297,22 @@ function Footer() {
     <footer className="border-t py-10 px-6" style={{ borderColor: C.border, color: C.text2 }}>
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
-          <div
-            className="w-6 h-6 rounded-md flex items-center justify-center"
-            style={{ background: C.cyn }}
-          >
+          <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ background: C.cyn }}>
             <Play size={10} className="text-black" />
           </div>
           <span className="text-sm font-medium" style={{ color: C.text }}>TutorReel</span>
         </div>
-
         <div className="flex items-center gap-6 text-sm" style={{ color: C.text2 }}>
-          <a href="#features" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>功能</a>
-          <a href="#download" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>下载</a>
-          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="transition-colors" style={{ color: C.text2 }} onMouseEnter={e => e.currentTarget.style.color = C.cyn} onMouseLeave={e => e.currentTarget.style.color = C.text2}>GitHub</a>
+          <a href="#features" className="transition-colors" style={{ color: C.text2 }}
+            onMouseEnter={e => e.currentTarget.style.color = C.cyn}
+            onMouseLeave={e => e.currentTarget.style.color = C.text2}>功能</a>
+          <a href="#download" className="transition-colors" style={{ color: C.text2 }}
+            onMouseEnter={e => e.currentTarget.style.color = C.cyn}
+            onMouseLeave={e => e.currentTarget.style.color = C.text2}>下载</a>
+          <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="transition-colors" style={{ color: C.text2 }}
+            onMouseEnter={e => e.currentTarget.style.color = C.cyn}
+            onMouseLeave={e => e.currentTarget.style.color = C.text2}>GitHub</a>
         </div>
-
         <p className="text-xs" style={{ color: C.text3 }}>© 2026 TutorReel · MIT License</p>
       </div>
     </footer>
