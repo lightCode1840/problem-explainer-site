@@ -304,7 +304,7 @@ function HowItWorks({ c }: { c: Ctx }) {
                 className="p-6 rounded-2xl border h-full transition-colors hover:border-teal-500/20"
                 style={{ background: c.cardBg, borderColor: c.border }}
               >
-                <div className="text-2xl font-bold mb-4" style={{ background: c.accentGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
+                <div key={`step-${c.isDark ? 'd' : 'l'}-${i}`} className="text-2xl font-bold mb-4" style={{ background: c.accentGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
                   {step.num}
                 </div>
                 <h3 className="font-semibold mb-2 text-[15px]" style={{ color: c.textPrimary }}>{step.title}</h3>
