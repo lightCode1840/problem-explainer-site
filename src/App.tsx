@@ -186,7 +186,7 @@ function Hero({ c }: { c: Ctx }) {
         <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight mb-6">
           <span style={{ color: c.textPrimary }}>AI 刷题讲解</span>
           <br />
-          <span style={{ background: c.accentGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+          <span key={`hero-${c.isDark ? 'd' : 'l'}`} style={{ background: c.accentGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
             一键生成短视频
           </span>
         </h1>
@@ -304,7 +304,7 @@ function HowItWorks({ c }: { c: Ctx }) {
                 className="p-6 rounded-2xl border h-full transition-colors hover:border-teal-500/20"
                 style={{ background: c.cardBg, borderColor: c.border }}
               >
-                <div className="text-2xl font-bold mb-4" style={{ background: c.accentGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                <div className="text-2xl font-bold mb-4" style={{ background: c.accentGradient, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent' }}>
                   {step.num}
                 </div>
                 <h3 className="font-semibold mb-2 text-[15px]" style={{ color: c.textPrimary }}>{step.title}</h3>
