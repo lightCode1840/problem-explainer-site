@@ -102,19 +102,19 @@ function Hero() {
           style={{ border: `1px solid ${C.border}`, color: C.text2 }}
         >
           <span className="w-1.5 h-1.5 rounded-full" style={{ background: C.text }} />
-          桌面应用 · 本地渲染 · 开源免费
+          本地跑 · 开源 · 免费
         </div>
 
         <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight mb-6">
-          <span style={{ color: C.text }}>AI 刷题讲解</span>
+          <span style={{ color: C.text }}>刷题太枯燥？</span>
           <br />
-          <span style={{ color: C.text2 }}>一键生成短视频</span>
+          <span style={{ color: C.text2 }}>让它变成动画片</span>
         </h1>
 
         <p className="text-lg max-w-2xl mx-auto mb-10 leading-relaxed" style={{ color: C.text2 }}>
-          粘贴题目，AI 自动生成带解说和数据结构动画的短视频。
+          把一道题贴进去，剩下的交给它。
           <br />
-          <span className="text-sm" style={{ color: C.text3 }}>支持桌面应用（macOS / Windows）和浏览器两种使用方式</span>
+          <span className="text-sm" style={{ color: C.text3 }}>macOS / Windows 都能跑</span>
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -146,12 +146,12 @@ function Hero() {
 // ─── Features ───────────────────────────────────────────────────────
 
 const FEATURES_DATA = [
-  { icon: <Zap size={19} />, title: 'AI 智能解析', desc: '接入 DeepSeek / GPT / Qwen 等大模型，自动提取知识点、生成分步讲解脚本和语音文案' },
-  { icon: <Mic2 size={19} />, title: 'TTS 拟人配音', desc: '双轨文案：字幕精简显示，配音自然口语化。自动计算时长，精准对齐画面帧' },
-  { icon: <Monitor size={19} />, title: '数据结构动画', desc: '数组、树、链表、网格多结构同屏渲染，高亮和指针随步骤自动推进' },
-  { icon: <Layers size={19} />, title: '多题型模板', desc: 'LeetCode 算法题 / 语法题 / Java 八股文各配动画模板。插件架构，可自由扩展' },
-  { icon: <Code2 size={19} />, title: '全量手动编辑', desc: '步骤、脚本、动画状态均可直接修改。重新生成音频后实时预览更新' },
-  { icon: <Terminal size={19} />, title: '本地运行', desc: '数据不出本机，无需上传。支持 Electron 桌面应用或 Node.js 开发模式两种方式' },
+  { icon: <Zap size={19} />, title: '自己选模型', desc: 'DeepSeek、GPT、Qwen 随你挑。觉得某个模型讲得不对味？换一个重来就行' },
+  { icon: <Mic2 size={19} />, title: '配音不机器', desc: '字幕一行，语音一段。字幕精炼好读，语音自然像人，不用手调' },
+  { icon: <Monitor size={19} />, title: '动画跟思路走', desc: '数组、树、链表…… 讲到哪高亮到哪，指针和状态跟着步骤变' },
+  { icon: <Layers size={19} />, title: '不是只有算法题', desc: '英语语法、Java 八股文一样行。每种题型有专属模板，插件一挂就能加' },
+  { icon: <Code2 size={19} />, title: '改到满意为止', desc: 'AI 生成的东西你说了算。步骤、措辞、动画，想改哪改哪' },
+  { icon: <Terminal size={19} />, title: '不传你的数据', desc: '一切在你电脑上跑。装个 Electron 就能用，装 Node.js 也能用' },
 ];
 
 function Features() {
@@ -159,8 +159,8 @@ function Features() {
     <section id="features" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: C.text }}>全方位覆盖出题场景</h2>
-          <p style={{ color: C.text2 }}>从文字输入到视频导出，一个工具全部搞定</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: C.text }}>它能干什么</h2>
+          <p style={{ color: C.text2 }}>不多不少，刚好够用</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -186,10 +186,10 @@ function Features() {
 // ─── How It Works ───────────────────────────────────────────────────
 
 const STEPS = [
-  { num: '01', title: '输入题目', desc: '粘贴题目文本，选择题型（LeetCode / 语法 / 八股文）和 AI 模型' },
-  { num: '02', title: 'AI 解析', desc: '流式调用大模型自动解构题目，生成逐步讲解脚本和配音文案' },
-  { num: '03', title: '审查与调整', desc: '在编辑器中预览步骤和动画，手动微调文案或动画状态' },
-  { num: '04', title: '导出视频', desc: '一键渲染高清 MP4，支持批量队列导出，合并长视频' },
+  { num: '01', title: '贴题目', desc: 'Ctrl+V 把题粘进去，选个题型和模型' },
+  { num: '02', title: '它来拆', desc: '后台的大模型吭哧吭哧把题拆成一步一步的讲解' },
+  { num: '03', title: '你看一遍', desc: '动画和文案都出来了，觉得哪里不对直接改' },
+  { num: '04', title: '导出', desc: '点一下，MP4 生成完事，想批量就批量' },
 ];
 
 function HowItWorks() {
@@ -197,8 +197,8 @@ function HowItWorks() {
     <section id="how-it-works" className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: C.text }}>四步一条视频</h2>
-          <p style={{ color: C.text2 }}>全程无需手动剪辑</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: C.text }}>用起来就四步</h2>
+          <p style={{ color: C.text2 }}>比剪视频简单一百倍</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -236,8 +236,8 @@ function DownloadSection() {
           style={{ background: C.card, borderColor: C.border }}
         >
           <div className="relative">
-            <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: C.text }}>下载 TutorReel</h2>
-            <p className="mb-8" style={{ color: C.text2 }}>两种使用方式，任你选择</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3" style={{ color: C.text }}>开搞</h2>
+            <p className="mb-8" style={{ color: C.text2 }}>想省事还是想折腾，都行</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-left mb-8">
               {/* Desktop App */}
@@ -248,8 +248,8 @@ function DownloadSection() {
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: C.accentBg, border: `1px solid ${C.border}` }}>
                   <Monitor size={18} />
                 </div>
-                <h3 className="font-semibold mb-1" style={{ color: C.text }}>桌面应用（推荐）</h3>
-                <p className="text-sm mb-4" style={{ color: C.text2 }}>原生安装包，开箱即用，无需 Node.js</p>
+                <h3 className="font-semibold mb-1" style={{ color: C.text }}>桌面应用</h3>
+                <p className="text-sm mb-4" style={{ color: C.text2 }}>双击安装，不用配环境</p>
                 <div className="flex flex-col gap-2.5">
                   <a
                     href={`${GITHUB_URL}/releases/latest/download/TutorReel-macOS.dmg`}
@@ -284,8 +284,8 @@ function DownloadSection() {
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-3" style={{ background: C.accentBg, border: `1px solid ${C.border}` }}>
                   <Terminal size={18} />
                 </div>
-                <h3 className="font-semibold mb-1" style={{ color: C.text }}>本地开发模式</h3>
-                <p className="text-sm mb-4" style={{ color: C.text2 }}>克隆仓库自建运行，需 Node.js 18+</p>
+                <h3 className="font-semibold mb-1" style={{ color: C.text }}>自己跑源码</h3>
+                <p className="text-sm mb-4" style={{ color: C.text2 }}>git clone 一把梭，适合开发者</p>
                 <div
                   className="p-4 rounded-xl font-mono text-xs leading-6 border"
                   style={{ background: C.bg, borderColor: C.border }}
