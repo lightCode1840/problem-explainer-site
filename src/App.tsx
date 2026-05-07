@@ -234,8 +234,14 @@ function DownloadSection() {
                 <h3 className="font-semibold mb-1" style={{ color: C.text }}>桌面应用</h3>
                 <p className="text-sm mb-4" style={{ color: C.text2 }}>即装即用，无需配置开发环境</p>
                 <div className="flex flex-col gap-2.5">
-                  <DownloadRow href={`${GITHUB_URL}/releases/latest/download/TutorReel-macOS.dmg`} label="macOS (Apple Silicon)" ext=".dmg" />
-                  <DownloadRow href={`${GITHUB_URL}/releases/latest/download/TutorReel-Windows-x64.exe`} label="Windows (x64)" ext=".exe" />
+                  <a href={`${GITHUB_URL}/releases`} target="_blank" rel="noreferrer"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border transition-all text-sm"
+                    style={{ borderColor: C.cyn, color: C.cyn }}
+                    onMouseEnter={e => { e.currentTarget.style.background = C.cyn; e.currentTarget.style.color = '#000000'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = C.cyn; }}>
+                    <Download size={15} />
+                    前往 Releases 下载
+                  </a>
                 </div>
               </div>
 
@@ -276,19 +282,6 @@ function DownloadSection() {
   );
 }
 
-function DownloadRow({ href, label, ext }: { href: string; label: string; ext: string }) {
-  return (
-    <a href={href} className="flex items-center justify-between px-4 py-2.5 rounded-xl border transition-all text-sm" style={{ borderColor: C.border, color: C.text2 }}
-      onMouseEnter={e => { e.currentTarget.style.borderColor = C.cyn; e.currentTarget.style.color = C.cyn; }}
-      onMouseLeave={e => { e.currentTarget.style.borderColor = C.border; e.currentTarget.style.color = C.text2; }}>
-      <span className="flex items-center gap-2">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v16m0 0l-4-4m4 4l4-4"/><path d="M4 20h16"/></svg>
-        {label}
-      </span>
-      <span className="text-xs" style={{ color: C.text3 }}>{ext}</span>
-    </a>
-  );
-}
 
 // ─── Footer ─────────────────────────────────────────────────────────
 
