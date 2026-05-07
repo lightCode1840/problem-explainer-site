@@ -8,7 +8,7 @@ function GithubIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-const GITHUB_URL = 'https://github.com/lightCode1840/cs-interview-prep';
+const GITHUB_URL = 'https://github.com/lightCode1840/TutorReel';
 
 const C = {
   bg: '#0B0B0D',
@@ -256,7 +256,7 @@ function DownloadSection() {
                 <p className="text-sm mb-4" style={{ color: C.text2 }}>克隆仓库自行构建，需 Node.js 18+</p>
                 <div className="p-4 rounded-xl font-mono text-xs leading-6 border" style={{ background: C.bg, borderColor: C.border }}>
                   <div><span style={{ color: C.text2 }}>$ </span><span style={{ color: C.text }}>git clone {GITHUB_URL}</span></div>
-                  <div><span style={{ color: C.text2 }}>$ </span><span style={{ color: C.text }}>cd cs-interview-prep && npm install</span></div>
+                  <div><span style={{ color: C.text2 }}>$ </span><span style={{ color: C.text }}>cd TutorReel && npm install</span></div>
                   <div><span style={{ color: C.text2 }}>$ </span><span style={{ color: C.text }}>cp .env.example .env</span><span style={{ color: C.text3 }}>  # 填入 API Key</span></div>
                   <div><span style={{ color: C.text2 }}>$ </span><span style={{ color: C.text }}>npm run dev</span></div>
                 </div>
