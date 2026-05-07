@@ -92,7 +92,7 @@ function NavIcon({ href, label, children }: { href: string; label: string; child
 
 function Hero() {
   return (
-    <section className="relative pt-40 pb-28 px-6 text-center overflow-hidden">
+    <section className="relative pt-40 pb-48 px-6 text-center overflow-hidden">
       <div className="pointer-events-none absolute inset-0 opacity-[0.025]">
         <div className="w-full h-full" style={{
           backgroundImage: 'linear-gradient(rgba(255,255,255,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.08) 1px,transparent 1px)',
@@ -129,6 +129,19 @@ function Hero() {
             查看源码
             <ArrowRight size={14} />
           </a>
+        </div>
+
+        {/* App Preview */}
+        <div className="relative mt-24 max-w-5xl mx-auto">
+          <div className="absolute -inset-6 rounded-[32px] opacity-[0.07] blur-3xl" style={{ background: C.cyn }} />
+          <div className="relative rounded-2xl border overflow-hidden shadow-2xl" style={{ borderColor: C.border, background: C.card }}>
+            <img
+              src="/app-screenshot.png"
+              alt="TutorReel 应用界面截图"
+              className="w-full h-auto block"
+              style={{ maxWidth: '100%' }}
+            />
+          </div>
         </div>
       </div>
     </section>
